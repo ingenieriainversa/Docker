@@ -1,10 +1,17 @@
 FROM rhel7.2:latest
+
 MAINTAINER Javier Dominguez Gomez
 
-RUN groupadd -r imanager && useradd -r -g imanager imanager
+ENV USER imanager
+ENV BIN_FILES_DIR IM162_x64
+ENV IM_HOME /opt/IBM/InstallationManager
 
-COPY BASE/IM162_x64 /tmp/IM162_x64
+RUN groupadd -r $USER && useradd -r -g $USER $USER
 
-RUN cd /tmp/IM162_x64 && ./installc -log /opt/im_install.log -acceptLicense && rm -rf /tmp/*
+COPY $BIN_FILES_DIR /tmp/$BIN_FILES_DIR
 
-RUN cd /opt && chown -R imanager:imanager IBM
+RUN cd /tmp/$BIN_FILES_DIR && \
+./install --launcher.ini silent-install.ini -acceptLicense -dataLocation $IM_HOME/dataLocation -installationDirectory $IM_HOME && \
+rm -rf /tmp/$BIN_FILES_DIR
+
+RUN chown -R $USER:$USER $IM_HOME
