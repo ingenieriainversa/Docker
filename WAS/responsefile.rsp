@@ -2,8 +2,8 @@
 <!--The "acceptLicense" attribute has been deprecated. Use "-acceptLicense" command line option to accept license agreements.-->
 <agent-input acceptLicense='true'>
 <server>
-<repository location='/software/WAS'/>
-<repository location='/software/WAS_SUPPLEMENTS'/>
+<repository location='/tmp/WAS'/>
+<repository location='/tmp/WAS_SUPPLEMENTS'/>
 </server>
 <profile id='IBM WebSphere Application Server V8.5' installLocation='/opt/IBM/WebSphere/AppServer'>
 <data key='eclipseLocation' value='/opt/IBM/WebSphere/AppServer'/>
