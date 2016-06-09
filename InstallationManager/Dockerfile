@@ -3,7 +3,7 @@ FROM rhel7.2:latest
 MAINTAINER Javier Dominguez Gomez
 
 ENV USER imanager
-ENV BIN_FILES_DIR IM162_x64
+ENV BIN_FILES_DIR /software/IM162_x64
 ENV IM_HOME /opt/IBM/InstallationManager
 
 RUN groupadd -r $USER && useradd -r -g $USER $USER
