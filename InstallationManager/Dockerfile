@@ -1,6 +1,6 @@
 FROM rhel7.2:latest
 
-MAINTAINER Javier Dominguez Gomez
+MAINTAINER Javier Dominguez Gomez "jdg@member.fsf.org"
 
 ENV USER imanager
 ENV BIN_FILES_DIR /software/IM162_x64
