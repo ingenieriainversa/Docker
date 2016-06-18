@@ -34,21 +34,38 @@
 # docker attach $CONTAINER_NAME
 
 FROM rhel7.2-im
-
 MAINTAINER Javier Dominguez Gomez "jdg@member.fsf.org"
 
-ENV USER was
-ENV WAS_HOME /opt/IBM/WebSphere8.5
+# You may need to download the software previously and put it into WAS folder.
 ENV WAS_SW_BASE WAS
+
+# The path that WAS will be installed
+ENV WAS_HOME /opt/IBM/WebSphere8.5
+
+# The path where Installation Manager was previously installed.
 ENV IM_HOME /opt/IBM/InstallationManager/eclipse
 
+# Define the user that will be creted.
+ENV USER was
+
+# Create WAS group and user.
 RUN groupadd -r $USER && useradd -r -g $USER $USER
 
+# Copy WAS Software base files and responsefile.xml to docker image.
 COPY $WAS_SW_BASE /tmp/$WAS_SW_BASE
-COPY responsefile.rsp /tmp/responsefile.rsp
+COPY responsefile.xml /tmp/responsefile.xml
 
+# Execute the installation manager instruction to use this response file and the
+# was repo we've created and execute the installation.
 RUN cd $IM_HOME && ./IBMIM --launcher.ini silent-install.ini -acceptLicense -input /tmp/responsefile.xml
-RUN chmod -R 750 $WAS_HOME && chown -R $USER:$USER $WAS_HOME && rm -fr /tmp/$WAS_SW_BASE /tmp/responsefile.xml
-RUN /opt/IBM/WebSphere8.5/AppServer/bin/manageprofiles.sh -create -templatePath /opt/IBM/WebSphere8.5/AppServer/profileTemplates/management
 
+# When the installation is done we change the install path permissions and delete
+# the repository so the image doesn't get tooooo big (it's big anyway).
+RUN chmod -R 750 $WAS_HOME && chown -R $USER:$USER $WAS_HOME && rm -fr /tmp/$WAS_SW_BASE /tmp/responsefile.xml
+
+# Create a default profile(USING ALL DEFAULT) so we can finally plan on running WAS
+# this will create a profile named AppSrv01 under AppServer/profiles directory.
+RUN /opt/IBM/WebSphere8.5/AppServer/bin/manageprofiles.sh -create -templatePath /opt/IBM/WebSphere8.5/AppServer/profileTemplates/default
+
+# Let's expose at least HTTP and DMGR ports for this profile.
 EXPOSE 9080 9060
