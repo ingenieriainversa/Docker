@@ -1,3 +1,9 @@
+# To build this image run a command like the following:
+# docker build -t rhel7.2-im .
+#
+# Than you can run the container for the first time using:
+# docker run -it --name InstallationManager --hostname rhel-javi rhel7.2-im /bin/bash
+
 FROM rhel7.2:latest
 
 MAINTAINER Javier Dominguez Gomez "jdg@member.fsf.org"
