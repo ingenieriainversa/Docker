@@ -47,10 +47,8 @@ RUN groupadd -r $USER && useradd -r -g $USER $USER
 COPY $WAS_SW_BASE /tmp/$WAS_SW_BASE
 COPY responsefile.rsp /tmp/responsefile.rsp
 
-RUN cd $IM_HOME && ./IBMIM --launcher.ini silent-install.ini -acceptLicense -input /tmp/responsefile.rsp
-
-RUN chmod -R 750 $WAS_HOME && chown -R $USER:$USER $WAS_HOME && rm -fr /tmp/$WAS_SW_BASE /tmp/responsefile.rsp
-
+RUN cd $IM_HOME && ./IBMIM --launcher.ini silent-install.ini -acceptLicense -input /tmp/responsefile.xml
+RUN chmod -R 750 $WAS_HOME && chown -R $USER:$USER $WAS_HOME && rm -fr /tmp/$WAS_SW_BASE /tmp/responsefile.xml
 RUN /opt/IBM/WebSphere8.5/AppServer/bin/manageprofiles.sh -create -templatePath /opt/IBM/WebSphere8.5/AppServer/profileTemplates/management
 
 EXPOSE 9080 9060
