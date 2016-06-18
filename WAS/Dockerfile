@@ -1,3 +1,24 @@
+# WebSphere Application Server ND 8.5.5.0 install on a docker container.
+# By Javier Dominguez Gomez - jdg@member.fsf.org
+# The base image used already contains Installation Manager 1.6.2 installed.
+# WebSphere Application Server ND can be downloaded from IBM web site:
+# http://www.ibm.com/developerworks/downloads/ws/was/
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+#
+# +------------------------------------------------------------------------+
+# | Licensed Materials - Property of IBM                                   |
+# | (C) Copyright IBM Corp. 2010, 2011.  All Rights Reserved.              |
+# |                                                                        |
+# | US Government Users Restricted Rights - Use, duplication or disclosure |
+# | restricted by GSA ADP Schedule Contract with IBM Corp.                 |
+# +------------------------------------------------------------------------+
+#
 # To build this image run a command like the following:
 # docker build -t rhel7.2-was .
 #
