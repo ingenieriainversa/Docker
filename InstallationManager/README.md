@@ -8,7 +8,7 @@ I use a RHEL 7.2 base.
 
 ## How to use this image
 
-Previously you need to download IBM Installation Manager (in this image v1.6.2) from the IBM official website, under license agreement. Unzip your downloaded software into `IM162_x64` folder. Also you need put the Dockerfile in the parent folder, like this:
+Previously you need to download IBM Installation Manager (in this image v1.6.2) from the IBM official website, under license agreement. Unzip your downloaded software into `IM162_x64` folder. Also you need put the Dockerfile in the same parent folder, like this:
 
 ```
 - /my/folder/
@@ -19,11 +19,11 @@ Previously you need to download IBM Installation Manager (in this image v1.6.2) 
 
 ## How to build
 To build this image run a command like the following:
-`docker build -t rhel7.2-im .`
+* `docker build -t rhel7.2-im .`
 
 ## How to run
 Than you can run the container for the first time using:
-`docker run -it --name InstallationManager --hostname rhel72 rhel7.2-im /bin/bash`
+* `docker run -it --name InstallationManager --hostname rhel72 rhel7.2-im /bin/bash`
 
 ## License
 
