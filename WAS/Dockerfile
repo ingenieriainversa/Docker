@@ -67,9 +67,7 @@ RUN cd $IM_HOME && ./IBMIM --launcher.ini silent-install.ini -acceptLicense -inp
 RUN chmod -R 750 $WAS_HOME && chown -R $USER:$USER $WAS_HOME && rm -fr /tmp/$WAS_SW_BASE /tmp/responsefile.xml
 
 # Create and federate a DMGR and AppSrv profiles (using all default) in a cell.
-RUN $WAS_HOME/AppServer/bin/manageprofiles.sh -create -profileName Dmgr_$HOSTNAME -profilePath $WAS_HOME/AppServer/profiles/Dmgr_$HOSTNAME -templatePath $WAS_HOME/AppServer/profileTemplates/management -nodeName Dmgr_${HOSTNAME}_node -cellName Cell_$HOSTNAME -hostName $HOSTNAME -enableAdminSecurity true -adminUserName admin -adminPassword 1234
-RUN $WAS_HOME/AppServer/bin/manageprofiles.sh -create -profileName AppSrv_$HOSTNAME -profilePath $WAS_HOME/AppServer/profiles/AppSrv_$HOSTNAME -templatePath $RUTA_WAS/AppServer/profileTemplates/managed -nodeName AppSrv_${HOSTNAME}_node -hostName $HOSTNAME
-RUN $WAS_HOME/AppServer/profiles/AppSrv_$HOSTNAME/bin/addNode.sh $HOSTNAME 8879 -username admin -password 1234
+RUN $WAS_HOME/AppServer/bin/manageprofiles.sh -create -templatePath $WAS_HOME/AppServer/profileTemplates/default
 
 # Let's expose at least HTTP and DMGR ports for this profile.
 EXPOSE 9080 9060
